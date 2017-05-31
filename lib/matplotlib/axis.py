@@ -2354,7 +2354,7 @@ class YAxis(Axis):
         ends = self.axes.transAxes.transform([[0, 0], [0, 1]])
         length = ((ends[1][1] - ends[0][1]) / self.axes.figure.dpi) * 72.0
         # Having a spacing of at least 2 just looks good.
-        size = 2 * self._major_tick_kw.get('labelsize',
+        size = 2.0 * self._major_tick_kw.get('labelsize',
                                            default=rcParams['%s.labelsize' % YTick.__name__])
         if size > 0:
             return int(np.floor(length / size))
