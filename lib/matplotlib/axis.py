@@ -2021,7 +2021,7 @@ class XAxis(Axis):
         if 'labelsize' in self._major_tick_kw:
             size = self._major_tick_kw['labelsize']
         else:
-            size = rcParams['%s.labelsize' % XTick.__name__]
+            size = rcParams['%s.labelsize' % XTick.__name__.lower()]
         size *= 3
         if size > 0:
             return int(np.floor(length / size))
@@ -2360,7 +2360,7 @@ class YAxis(Axis):
         if 'labelsize' in self._major_tick_kw:
             size = self._major_tick_kw['labelsize']
         else:
-            size = rcParams['%s.labelsize' % YTick.__name__]
+            size = rcParams['%s.labelsize' % YTick.__name__.lower()]
         size *= 2.0
         if size > 0:
             return int(np.floor(length / size))
