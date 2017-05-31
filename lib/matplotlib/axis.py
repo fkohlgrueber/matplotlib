@@ -2018,8 +2018,11 @@ class XAxis(Axis):
         length = ((ends[1][0] - ends[0][0]) / self.axes.figure.dpi) * 72.0
         # There is a heuristic here that the aspect ratio of tick text
         # is no more than 3:1
-        size = 3 * self._major_tick_kw.get('labelsize',
-                                           default=rcParams['%s.labelsize' % XTick.__name__])
+        if 'labelsize' in self._major_tick_kw:
+            size = self._major_tick_kw['labelsize']
+        else:
+            size = rcParams['%s.labelsize' % XTick.__name__]
+        size *= 3
         if size > 0:
             return int(np.floor(length / size))
         else:
@@ -2354,8 +2357,11 @@ class YAxis(Axis):
         ends = self.axes.transAxes.transform([[0, 0], [0, 1]])
         length = ((ends[1][1] - ends[0][1]) / self.axes.figure.dpi) * 72.0
         # Having a spacing of at least 2 just looks good.
-        size = 2.0 * self._major_tick_kw.get('labelsize',
-                                           default=rcParams['%s.labelsize' % YTick.__name__])
+        if 'labelsize' in self._major_tick_kw:
+            size = self._major_tick_kw['labelsize']
+        else:
+            size = rcParams['%s.labelsize' % YTick.__name__]
+        size *= 2.0
         if size > 0:
             return int(np.floor(length / size))
         else:
